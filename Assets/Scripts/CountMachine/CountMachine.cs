@@ -26,6 +26,20 @@ public class CountMachine : UIWidgetsPanel
 }
 
 
+/// <summary>
+/// 新路由页面
+/// </summary>
+public class NewRoute : StatelessWidget
+{
+    public override Widget build(BuildContext context)
+    {
+        return new Scaffold(
+            appBar:new AppBar(title:new Text("NewRoute")),
+            body:new Center(child:new Text("This is new route"))
+        );
+    }
+}
+
 //首页继承于StatefulWidget，表示它是一个有状态的组件，这些状态在widget生命周期中是可变的
 //statefulWidget 至少有两部分组成：
 //1.一个statefulWidget类
@@ -68,7 +82,20 @@ public class MyHomePageState : State<MyHomePage>
                     children:new List<Widget>
                     {
                         new Text("You have pushed the button this many times"),
-                        new Text(_counter.ToString(),style:Theme.of(context).textTheme.display1)
+                        new Text(_counter.ToString(),style:Theme.of(context).textTheme.display1),
+                        new FlatButton(
+                            child:new Text("open new route"),
+                            textColor:Colors.blue,
+                            onPressed: () =>
+                            {
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        (BuildContext buildContext) => { return new NewRoute();}
+                                        )
+                                    );
+                            }
+                        )
                     }
                   )
                 ),
